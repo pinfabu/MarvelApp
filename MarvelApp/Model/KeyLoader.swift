@@ -34,7 +34,7 @@ class KeyLoader{
     /*
      ts = timestamp
      apikey : public key
-     hash param : a md5 digest of the ts parameter, your private key and your public key (e.g. md5(ts+privateKey+publicKey)
+     hash : a md5 digest of the ts parameter, your private key and your public key (e.g. md5(ts+privateKey+publicKey)
      */
     
     func getAPIParams() -> (ts: String, hash: String, apiKey: String){
@@ -45,6 +45,7 @@ class KeyLoader{
     func getQueryString() -> String {
         ts = (Date().timeIntervalSince1970).asString
         hash = (ts+self.privateKey+self.publicKey).md5
+        print("ts="+ts+"&hash="+hash+"&apikey="+self.publicKey)
         return "ts="+ts+"&hash="+hash+"&apikey="+self.publicKey
     }
     
